@@ -71,7 +71,7 @@ print(f"5. Bayesian: P(treatment better) = {bayes['prob_treatment_better']:.1%},
       f"expected loss if shipped = {bayes['expected_loss_treatment']:.5f}")
 
 fig, ax = plt.subplots(figsize=(6.5, 2.6))
-for i, (label, r) in enumerate([("Revenue/user (raw)", rpu), ("Revenue/user (CUPED)", rpu_cuped), ("Conversion rate", conv)]):
+for i, (_label, r) in enumerate([("Revenue/user (raw)", rpu), ("Revenue/user (CUPED)", rpu_cuped), ("Conversion rate", conv)]):
     ax.errorbar(r.rel_lift * 100, i, xerr=[[(r.rel_lift - r.ci_rel[0]) * 100], [(r.ci_rel[1] - r.rel_lift) * 100]],
                 fmt="o", color="#3B5BDB", capsize=4)
 ax.axvline(0, color="black", lw=0.8)
