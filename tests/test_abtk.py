@@ -72,5 +72,18 @@ class AnalyzeTests(unittest.TestCase):
         self.assertTrue(abtk.srm_check(51_500, 48_500)["mismatch"])
 
 
+class SequentialTests(unittest.TestCase):
+    def test_obrien_fleming_matches_published_values(self):
+        # Published two-sided boundaries for 5 equally spaced looks at alpha = 0.05.
+        expected = [4.562, 3.226, 2.634, 2.281, 2.040]
+        np.testing.assert_allclose(abtk.obrien_fleming_bounds(5), expected, atol=0.02)
+
+    def test_peeking_inflates_errors_and_bounds_fix_it(self):
+        naive = abtk.false_positive_rate_with_peeking(5, sims=50_000)
+        safe = abtk.false_positive_rate_with_peeking(5, sims=50_000, bounds=abtk.obrien_fleming_bounds(5))
+        self.assertGreater(naive, 0.12)
+        self.assertAlmostEqual(safe, 0.05, delta=0.006)
+
+
 if __name__ == "__main__":
     unittest.main()
