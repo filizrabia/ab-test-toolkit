@@ -1,5 +1,7 @@
 # abtk: a small A/B testing toolkit
 
+[![CI](https://github.com/filizrabia/ab-test-toolkit/actions/workflows/ci.yml/badge.svg)](https://github.com/filizrabia/ab-test-toolkit/actions/workflows/ci.yml) ![Python](https://img.shields.io/badge/python-3.10%E2%80%933.12-3776AB) ![License](https://img.shields.io/badge/license-MIT-lightgrey)
+
 The functions I reach for in every marketing or product experiment, in one dependency-light package (numpy + scipy): plan the test, check that it ran correctly, analyze it, and make the call.
 
 **Start here:** [notebooks/ab_test_walkthrough.ipynb](notebooks/ab_test_walkthrough.ipynb) runs a full checkout experiment from planning to the ship decision, including the two mistakes that most often invalidate real tests.
