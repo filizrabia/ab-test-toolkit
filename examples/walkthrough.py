@@ -81,3 +81,20 @@ ax.set_title("CUPED narrows the interval on the same data", loc="left")
 fig.tight_layout()
 fig.savefig(IMAGES / "results.png")
 plt.close(fig)
+
+# 5. Peeking ----------------------------------------------------------------
+looks = [1, 2, 3, 5, 10, 20]
+naive = [abtk.false_positive_rate_with_peeking(k) for k in looks]
+safe = abtk.false_positive_rate_with_peeking(5, bounds=abtk.obrien_fleming_bounds(5))
+print(f"6. Peeking: naive false positive rate with 5 looks = {naive[3]:.1%}, with O'Brien-Fleming bounds = {safe:.1%}")
+fig, ax = plt.subplots(figsize=(6.5, 3))
+ax.plot(looks, np.array(naive) * 100, color="#E8590C", lw=2, marker="o", label="Stop at first p < 0.05")
+ax.scatter([5], [safe * 100], color="#3B5BDB", s=50, zorder=3, label="5 planned looks, O'Brien-Fleming")
+ax.axhline(5, color="#868E96", ls=":", label="Intended 5%")
+ax.set_xlabel("Number of times results are checked")
+ax.set_ylabel("False positive rate (%)")
+ax.set_title("Peeking inflates false positives; planned looks don't", loc="left")
+ax.legend(frameon=False, fontsize=8)
+fig.tight_layout()
+fig.savefig(IMAGES / "peeking.png")
+plt.close(fig)
