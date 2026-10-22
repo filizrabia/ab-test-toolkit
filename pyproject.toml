@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "abtk"
+version = "0.1.0"
+description = "A small A/B testing toolkit: sample size, power, frequentist and Bayesian analysis, CUPED, SRM checks"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Rabia Filiz Gurkanli" }]
+dependencies = ["numpy>=1.26", "scipy>=1.11"]
+
+[project.optional-dependencies]
+examples = ["matplotlib>=3.8"]
+
+[tool.setuptools]
+packages = ["abtk"]
